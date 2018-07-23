@@ -11,9 +11,14 @@ const cx = '012040760514751621405:3qggxrt9tk8';
 const apiURL = 'https://www.googleapis.com/customsearch/v1'
 
 class SearchBar extends Component {
-  searchOnMedium = (searchParam) => {
-    let URL = apiURL + '?key=' + API_KEY + '&cx=' + cx + '&q=' + searchParam;
-    console.log(URL);
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchTerm: ''
+    }
+  }
+  searchOnMedium = () => {
+    let URL = apiURL + '?key=' + API_KEY + '&cx=' + cx + '&q=' + this.state.searchTerm;
     fetch(URL, {
       method: 'GET',
       headers: {
@@ -35,10 +40,12 @@ class SearchBar extends Component {
           placeholder='Enter your search terms'
           style={styles.textInputSearch}
           underlineColorAndroid={'transparent'}
+          onChangeText={(searchTerm) => this.setState({ searchTerm })}
+          value={this.state.searchTerm}
         />
         <TouchableOpacity
           style={styles.textSearchButton}
-          onPress={() => this.searchOnMedium('react native')}
+          onPress={() => this.searchOnMedium()}
         >
           <FontAwesome name="search" size={16} color="#000"/>
         </TouchableOpacity>
