@@ -3,11 +3,14 @@ import {TextInput, TouchableOpacity, View} from 'react-native';
 import {FontAwesome} from '@expo/vector-icons';
 import {API_KEY} from '../../constants/api.js';
 
+import {connect} from 'react-redux';
+import {searchResults} from "../../actions";
+
 const styles = require('./SearchBarStyles');
 const cx = '012040760514751621405:3qggxrt9tk8';
 const apiURL = 'https://www.googleapis.com/customsearch/v1'
 
-export default class SearchBar extends Component {
+class SearchBar extends Component {
   searchOnMedium = (searchParam) => {
     let URL = apiURL + '?key=' + API_KEY + '&cx=' + cx + '&q=' + searchParam;
     console.log(URL);
@@ -18,9 +21,10 @@ export default class SearchBar extends Component {
         'Content-Type': 'application/json',
       }
     }).then((response) => {
-      console.log(response)
+      response.json().then((data) => {
+        this.props.searchResults(data.items);
+      })
     }).catch((error) => console.log(error));
-
   }
 
   render() {
@@ -42,3 +46,5 @@ export default class SearchBar extends Component {
     )
   }
 }
+
+export default connect(null, {searchResults})(SearchBar);
