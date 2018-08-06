@@ -15,10 +15,11 @@ class SearchResults extends Component {
       <View style={styles.searchResultsContainer}>
         {this.props.results.map((result, key) => (
           <TouchableOpacity 
+            key={key}
             onPress={() => { Linking.openURL(result.formattedUrl) }}
             style={styles.resultLink}
           >
-            <Text key={key}>{result.title}</Text>
+            <Text>{result.title}</Text>
           </TouchableOpacity>
           ))}
       </View>
