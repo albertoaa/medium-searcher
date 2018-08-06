@@ -1,23 +1,28 @@
 import React, {Component} from 'react';
-import {View, TouchableOpacity, Text} from 'react-native';
+import {Text, View} from 'react-native';
+
+import {connect} from 'react-redux';
 
 const styles = require('./SearchResultsStyles');
 
-export default class SearchResults extends Component {
+class SearchResults extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return(
       <View style={styles.searchResultsContainer}>
-        <TouchableOpacity>
-          <Text>
-            Result 1
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Text>
-            Result 2
-          </Text>
-        </TouchableOpacity>
+        {this.props.results.map((result, key) => (<Text key={key}>{result.title}</Text>))}
       </View>
     )
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    results: state.results
+  };
+}
+
+export default connect(mapStateToProps, null)(SearchResults);
