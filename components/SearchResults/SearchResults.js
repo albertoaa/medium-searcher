@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, View} from 'react-native';
+import {Linking, Text, TouchableOpacity, View} from 'react-native';
 
 import {connect} from 'react-redux';
 
@@ -13,7 +13,14 @@ class SearchResults extends Component {
   render() {
     return(
       <View style={styles.searchResultsContainer}>
-        {this.props.results.map((result, key) => (<Text key={key}>{result.title}</Text>))}
+        {this.props.results.map((result, key) => (
+          <TouchableOpacity 
+            onPress={() => { Linking.openURL(result.formattedUrl) }}
+            style={styles.resultLink}
+          >
+            <Text key={key}>{result.title}</Text>
+          </TouchableOpacity>
+          ))}
       </View>
     )
   }
