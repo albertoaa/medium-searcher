@@ -1,5 +1,15 @@
 {
   "expo": {
-    "sdkVersion": "27.0.0"
+    "name": "Medium Searcher",
+    "icon": "./assets/img/medium-searcher-logo.png",
+    "version": "0.1.0",
+    "slug": "medium-searcher-app",
+    "sdkVersion": "27.0.0",
+    "ios": {
+      "bundleIdentifier": "com.medium-searcher.app"
+    },
+    "android": {
+      "package": "com.medium-searcher.app"
+    }
   }
 }
