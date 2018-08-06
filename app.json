@@ -6,10 +6,10 @@
     "slug": "medium-searcher-app",
     "sdkVersion": "27.0.0",
     "ios": {
-      "bundleIdentifier": "com.medium-searcher.app"
+      "bundleIdentifier": "com.mediumsearcher.app"
     },
     "android": {
-      "package": "com.medium-searcher.app"
+      "package": "com.mediumsearcher.app"
     }
   }
 }
